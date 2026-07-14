@@ -1,0 +1,52 @@
+# Résultats expérimentaux - CybORG
+Mémoire USCB06 - juin 2026
+
+## Dispositif
+- Environnement : CybORG 3.1, scénario DroneSwarm (CAGE 3), mode simulation, exécuté localement (Python 3.12, macOS Apple Silicon).
+- Agent : `blue_agent_0` (défenseur), 56 actions discrètes. Interface `OpenAIGymWrapper` + `FixedFlatWrapper`.
+- Graine aléatoire fixée (seed = 42) pour la reproductibilité. (CybORG garde un léger aléa interne, atténué en moyennant sur assez de parties.)
+
+## Méthode
+- Mesure : récompense cumulée par épisode (25 tours/partie).
+- Hasard : moyenne sur 40 parties.
+- Balayage des 56 actions fixes : moyenne sur 10 parties chacune.
+
+## Résultats fiables
+
+| Stratégie | Récompense moyenne |
+|---|---|
+| Hasard (40 parties) | -164,2 |
+| Action fixe - moyenne des 56 | -161,2 |
+| Meilleure action fixe (#26) | -93,4 |
+| Pire action fixe (#44) | -236,2 |
+
+## Interprétation
+- En moyenne, jouer toujours une même action (-161) ne fait pas mieux que le hasard (-164).
+- Mais le choix de la décision est déterminant : de -236 (pire) à -93 (meilleure), soit ~143 points d'écart.
+- Même la meilleure règle fixe (-93) reste médiocre : une règle figée a un plafond.
+- Pour défendre mieux, il faut un agent qui s'adapte (apprentissage par renforcement, ou LLM). Ce constat motive l'étude de l'IA agentique.
+
+## Leçon méthodologique (importante)
+Un premier essai sur 5 parties par action avait désigné une action « gagnante » à -44 - un artefact de petit échantillon (coup de chance). Mesurée sur assez de parties (avec seed fixé), cette action n'est pas spéciale. D'où l'importance de moyenner sur assez de parties et de fixer une graine aléatoire.
+
+## Reproductibilité
+- Script : `~/CybORG/experience_fiable.py` (seed 42).
+
+---
+
+## CORRECTIF (3 juillet 2026) - le « -93,4 » ne se reproduit pas
+
+Re-mesure de l'action #26 seule, même protocole (seed 42, 25 tours/partie) :
+
+| Échantillon | Moyenne |
+|---|---|
+| 10 parties (essai 1) | -186,9 |
+| 10 parties (essai 2) | -172,7 |
+| 40 parties (mesure de référence) | -169,0 |
+
+Explication : artefact de sélection (« malédiction du vainqueur »). Le -93,4 provenait du balayage des 56 actions à 10 parties chacune, en gardant la meilleure. Sélectionner le maximum parmi 56 estimations bruitées récolte surtout la plus chanceuse - même mécanisme que l'artefact des 5 parties (-44), version plus subtile : 10 parties ne suffisent pas non plus quand on sélectionne.
+
+Conclusion corrigée : aucune action fixe identifiée ne fait mieux que le hasard (-169 vs -164). Le message scientifique se renforce : une défense statique - quelle qu'elle soit - ne protège pas l'essaim ; il faut un agent qui s'adapte à la situation.
+
+- Script : `~/CybORG/dix_parties_bouton26.py` (40 parties, seed 42).
+- Leçon méthodo n°2 pour le mémoire : vérifier tout « vainqueur » sur un échantillon neuf et plus grand avant de le déclarer vainqueur.

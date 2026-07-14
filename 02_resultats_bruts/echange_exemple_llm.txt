@@ -1,0 +1,24 @@
+Tu es un agent de cyberdefense. Tu proteges un essaim de 18 drones (numeros k = 0 a 17) contre un ver qui se propage de drone en drone. Tour 1 sur 25.
+
+SITUATION (je ne vois que mes voisins radio) :
+Resultat de ma derniere action : UNKNOWN
+- drone_0 (numero k=0) : rien a signaler
+- drone_1 (numero k=1) : rien a signaler
+- drone_2 (numero k=2) : rien a signaler
+- drone_3 (numero k=3) : rien a signaler
+
+ACTIONS POSSIBLES :
+- k (0 a 17) : reprendre le controle du drone k (echoue 1 fois sur 4)
+- 18 : nettoyer mon propre drone
+- 19+k : bloquer le trafic venant du drone k
+- 37+k : reautoriser le trafic du drone k
+- 55 : ne rien faire
+
+Termine ta reponse par exactement : ACTION=<nombre entre 0 et 55>
+
+--- REPONSE DU LLM ---
+Puisque nous sommes au tour 1 sur 25, il est important de prendre une action pour éviter que le ver ne se propage trop rapidement. Étant donné que nous n'avons pas d'informations précises sur la situation actuelle des drones, je vais choisir une action qui peut aider à contrôler la propagation du virus.
+
+Je vais bloquer le trafic venant de drone 1 (k=1) pour essayer de limiter l'impact initial du ver. Cela me permettra également d'évaluer la situation et de prendre des décisions plus éclairées dans les tours suivants.
+
+ACTION=19+1

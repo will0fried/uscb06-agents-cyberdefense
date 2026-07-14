@@ -1,0 +1,20 @@
+# Système
+.DS_Store
+Thumbs.db
+
+# Python
+__pycache__/
+*.pyc
+*.pyo
+.venv/
+venv/
+env/
+
+# Journaux temporaires
+*.log
+
+# Document de travail perso (pas une preuve)
+Checklist_preuves.pdf
+
+# Fichiers temporaires FUSE (résidus de déplacements)
+.fuse_hidden*
