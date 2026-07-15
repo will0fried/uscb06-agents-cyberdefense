@@ -11,7 +11,7 @@ from CybORG.Simulator.Scenarios.DroneSwarmScenarioGenerator import DroneSwarmSce
 from CybORG.Agents.Wrappers.OpenAIGymWrapper import OpenAIGymWrapper
 from CybORG.Agents.Wrappers.FixedFlatWrapper import FixedFlatWrapper
 
-TOURS = 30
+TOURS = 25                 # IDENTIQUE a entrainement_rl.py (seed 42) : seule la graine doit changer
 PAS_TOTAL = 300_000
 
 class AdaptateurGymnasium(gymn.Env):

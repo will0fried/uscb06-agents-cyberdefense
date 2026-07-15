@@ -15,7 +15,14 @@ L'idée que je défends dans le mémoire : la performance d'un agent tient autan
 
 ## Quel script pour quelle stratégie
 
-Sur CAGE 2 : `cage2_regles.py` pour la règle réactive (façon AICA), `cage2_hasard_et_rl.py` pour le hasard et le RL, `cage2_action_fixe.py` pour le balayage des actions fixes, `cage2_llm_nuit.py` pour le LLM. Sur DroneSwarm : `entrainement_rl.py` et `eval_rl_v2.py` pour le RL, `experience_complete.py` pour les actions fixes, `serie_llm_nuit.py` pour le LLM. Les résultats finaux, sur 1 000 parties, sont les fichiers dont le nom finit par `_final.csv`.
+Les campagnes finales (1 000 parties de 30 tours, graines 1-1000 appariées) tiennent en quatre scripts, et chacun écrit directement les fichiers `*_final.csv` cités dans le mémoire :
+
+- `cage2_campagne.py` : sur CAGE 2, joue le hasard, l'action fixe, la règle réactive (façon AICA) et le RL
+- `cage2_llm_1000.py` : sur CAGE 2, le LLM
+- `drones_campagne.py` : sur DroneSwarm, les quatre mêmes stratégies
+- `serie_llm_nuit.py` : sur DroneSwarm, le LLM
+
+En amont : `cage2_entrainement_rl.py` et `entrainement_rl.py` entraînent les deux modèles PPO ; `cage2_action_fixe.py` et `experience_complete.py` sont les balayages qui ont servi à identifier la meilleure action fixe de chaque terrain (#135 sur CAGE 2, #12 sur DroneSwarm).
 
 ## Ce que ça donne
 
