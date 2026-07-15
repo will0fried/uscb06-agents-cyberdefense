@@ -1,4 +1,4 @@
-# Campagne LLM de NUIT - protocole v2 : 100 parties de 30 tours, graines 1-100.
+# Campagne LLM de NUIT - protocole v2 : 1000 parties de 30 tours, graines 1-1000.
 # Le LLM n'etant PAS deterministe (controle 2), chaque graine est jouee 1 fois ici
 # (la variabilite interne du LLM s'ajoute a celle du monde : on l'assume et on le note).
 # REPREND automatiquement la ou il s'est arrete (lit le CSV existant).
@@ -86,7 +86,7 @@ with open(CSV) as f:
     for row in csv.DictReader(f):
         scores.append(float(row['score']))
 import statistics
-print(f"\n=== AGENT LLM ({MODELE}, {len(scores)} parties, 30 tours, graines 1-100) ===")
+print(f"\n=== AGENT LLM ({MODELE}, {len(scores)} parties, 30 tours, graines 1-1000) ===")
 print(f"Moyenne : {statistics.mean(scores):.1f}")
 print(f"Meilleure : {max(scores):.1f} | Pire : {min(scores):.1f}")
 print(f"CSV : {CSV}")
