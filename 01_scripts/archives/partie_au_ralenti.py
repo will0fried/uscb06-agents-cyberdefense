@@ -1,3 +1,6 @@
+# DroneSwarm - une partie au hasard affichee tour par tour (25 tours, seed 42), pour voir
+# ce que le defenseur observe (un vecteur de 11 293 nombres) et les 56 boutons possibles.
+# Exploration du 2 juillet. A copier dans ~/CybORG puis : python partie_au_ralenti.py
 import random
 import numpy as np
 from CybORG import CybORG

@@ -12,7 +12,9 @@ from CybORG.Simulator.Scenarios.DroneSwarmScenarioGenerator import DroneSwarmSce
 from CybORG.Agents.Wrappers.OpenAIGymWrapper import OpenAIGymWrapper
 from CybORG.Agents.Wrappers.FixedFlatWrapper import FixedFlatWrapper
 
-TOURS = 25                 # meme duree de partie que tout le reste du protocole
+TOURS = 25                 # herite du protocole v1. ATTENTION : l evaluation finale
+                           # (drones_campagne.py) se fait a 30 tours. Ecart assume et
+                           # signale dans le memoire (section limites).
 PAS_TOTAL = 300_000        # nombre de coups d'entrainement (~12 000 parties)
 
 class AdaptateurGymnasium(gymn.Env):

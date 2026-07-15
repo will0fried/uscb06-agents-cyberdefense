@@ -1,3 +1,6 @@
+# DroneSwarm - le bouton fixe #26 joue sur 40 parties, seed 42, 25 tours. A servi a
+# demasquer le faux champion a -93,4 : re-mesure, il retombe a -169,0 (artefact de selection).
+# Exploration du 3 juillet. A copier dans ~/CybORG puis : python dix_parties_bouton26.py
 import random, statistics
 import numpy as np
 from CybORG import CybORG
@@ -21,5 +24,5 @@ for partie in range(1, 41):
     scores.append(total)
     print(f"Partie {partie:2d} : {total:7.1f}")
 
-print("\nMoyenne des 10 :", round(statistics.mean(scores), 1))
+print("\nMoyenne des 40 :", round(statistics.mean(scores), 1))
 print("Meilleure :", max(scores), " | Pire :", min(scores))

@@ -11,7 +11,7 @@ from CybORG.Agents.Wrappers import ChallengeWrapper
 
 PARTIES, TOURS = 1000, 30
 PATH = str(inspect.getfile(CybORG))[:-10] + '/Shared/Scenarios/Scenario2.yaml'
-print('CONDITIONS — CybORG:', inspect.getfile(CybORG))
+print('CONDITIONS - CybORG:', inspect.getfile(CybORG))
 print('numpy', np.__version__, '| python', sys.version.split()[0], flush=True)
 
 _e = ChallengeWrapper(env=CybORG(PATH,'sim',agents={'Red':B_lineAgent}), agent_name='Blue'); _e.reset()
