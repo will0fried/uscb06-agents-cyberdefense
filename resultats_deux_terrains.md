@@ -30,7 +30,7 @@ tient sans ambiguïté.
 | Action fixe (#12) | −194,38 | 116,4 | [−201,60 ; −187,17] |
 | Règle réactive | −197,56 | 112,2 | [−204,52 ; −190,60] |
 | Hasard | −205,83 | 107,6 | [−212,50 ; −199,16] |
-| LLM (llama3.2:3b, n=100) | −215,63 | 103,1 | [−235,84 ; −195,42] |
+| LLM (llama3.2:3b, n=1000) | −211,50 | 111,28 | [−218,40 ; −204,61] |
 
 Les intervalles de confiance se chevauchent largement. Mais l'analyse appariée
 (la même que sur CAGE 2) détecte des écarts significatifs - le chevauchement des IC ne
@@ -43,6 +43,7 @@ prouve pas l'absence de différence :
 | Action fixe vs hasard | +11,44 | [+4,18 ; +18,71] | 542/1000 | significatif |
 | RL vs règle | +3,21 | [−4,69 ; +11,11] | 495/1000 | non significatif |
 | RL vs action fixe | +0,04 | [−6,77 ; +6,85] | 460/1000 | non significatif |
+| LLM vs hasard | −5,68 | [−12,46 ; +1,11] | 481/1000 | non significatif |
 
 Le RL, la règle et l'action fixe battent le hasard de façon statistiquement
 significative mais pratiquement négligeable (~11 points, 55 % des parties) - contre
@@ -80,4 +81,4 @@ récompense différentes) ; on compare le motif - hiérarchie nette vs chevauche
 ## Fichiers
 - CSV : `cage2_*_final.csv`, `drones_*_final.csv` (dans 02_resultats_bruts/).
 - Figures : `03_captures/cage2_boxplots.png`, `03_captures/comparaison_deux_terrains.png`.
-- Reste : LLM sur les deux terrains (N réduit, lancé de nuit), puis rédaction 4.4.
+- Campagnes terminées : les 5 stratégies sont à n=1000 sur les deux terrains (LLM DroneSwarm bouclé le 15 juillet, ~69 h).

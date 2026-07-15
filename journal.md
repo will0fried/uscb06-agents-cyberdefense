@@ -69,3 +69,13 @@ Entraînement RL : PPO (stable-baselines3), 300 000 pas (environ 12 000 parties)
 Évaluation RL : 40 parties, 25 tours, politique déterministe, -147,4 (de -7 à -381). La meilleure moyenne du tableau, +17 par rapport au hasard, mais l'écart vaut environ un écart-type : une tendance, pas une preuve.
 
 Mesure de référence LLM : prompt v1, 40 parties, temperature 0, environ 1 h, -177,0 (de -20 à -376), 2 réponses invalides sur 1000 décisions. Le -139,3 vu à 10 parties ne tient pas à 40 : troisième artefact de petit échantillon du projet (après le -44 à 5 parties et le -93,4 sélectionné). Le LLM 3B générique ne bat pas le hasard (-177 contre -164). Hypothèses à discuter au chapitre 4 : modèle trop petit, observation pauvre en signal (on ne voit que 4 voisins sur 18 drones), un seul défenseur pour 18 drones. Cette limite vaut pour toutes les stratégies, donc la comparaison reste équitable.
+
+## 15 juillet
+
+Fin de la campagne LLM sur DroneSwarm à 1000 parties : moyenne -211,50 (écart-type 111,3, IC 95 % [-218,40 ; -204,61]), 0 invalide sur les 1000. Le run a tourné presque 69 heures d'affilée, environ 4 min par partie. Meilleure partie -4, pire -476 : la dispersion reste énorme, comme d'habitude sur ce terrain.
+
+La valeur à 100 parties donnait -215,6, à 1000 on trouve -211,5. L'écart est dans le bruit, donc la mesure tenait déjà. Comparaison appariée avec le hasard : -5,68 en moyenne, IC 95 % [-12,46 ; +1,11], 481 victoires sur 1000. L'intervalle contient zéro, donc le LLM n'est pas significativement pire que le hasard sur DroneSwarm, il reste simplement le plus bas. Sur CAGE 2 il l'était significativement ; ici non.
+
+Piège du jour : l'en-tête affiché à la fin du run disait « 1000 parties, graines 1-100 ». C'était juste le texte du print resté figé après le passage de PARTIES à 1000. Vérifié dans le CSV avant de toucher au mémoire : 1000 lignes, graines 1 à 1000, toutes uniques. Le libellé mentait, pas les données. Encore une fois : ne jamais recopier un chiffre sans ouvrir le fichier.
+
+Avec cette campagne, les cinq stratégies sont à 1000 parties sur les deux terrains. Plus d'asymétrie dans le mémoire.
