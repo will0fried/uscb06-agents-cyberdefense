@@ -78,6 +78,31 @@ récompense différentes) ; on compare le motif - hiérarchie nette vs chevauche
  50 parties surestimait de ~10 points, illustration de plus de l'importance
  du grand échantillon.
 
+## Contrôle 3 : la graine et la durée d'entraînement (16 juillet)
+
+Le modèle RL DroneSwarm publié est entraîné avec la graine 42 sur des parties de 25 tours.
+Trois modèles supplémentaires, un seul facteur modifié à chaque fois, tous évalués sur le
+protocole publié (1000 parties de 30 tours, graines appariées 1-1000).
+
+| Modèle | Ce qui change | Moyenne | IC 95 % |
+|---|---|---|---|
+| publié (g42, 25 tours) | référence | −194,35 | [−201,54 ; −187,15] |
+| g43_t25 | graine seule | −194,83 | [−201,95 ; −187,72] |
+| g44_t25 | graine seule | −194,10 | [−201,06 ; −187,14] |
+| g42_t30 | durée seule | −197,17 | [−204,31 ; −190,03] |
+
+Lecture : trois entraînements indépendants (g42, g43, g44) tiennent en 0,73 point. La graine
+n'explique rien. L'entraînement à 30 tours donne 2,8 points d'écart, orienté dans le sens
+inverse de l'objection (entraîner à 30 ne rattrape rien).
+
+Les quatre politiques PPO se rangent entre −194 et −197, soit collées à l'action fixe
+(−194,38) et à une dizaine de points du hasard (−205,83). Le plafond de DroneSwarm ne
+dépend ni de la graine ni de la durée d'entraînement : il tient au terrain.
+
+Script : `01_scripts/controle3_rl_graines_duree.py`. CSV : `controle3_*.csv`.
+À faire : comparaison appariée publié vs g42_t30 (les IC se chevauchent, l'appariement
+tranchera). Tant qu'elle n'est pas faite, ne pas écrire « non significatif ».
+
 ## Fichiers
 - CSV : `cage2_*_final.csv`, `drones_*_final.csv` (dans 02_resultats_bruts/).
 - Figures : `03_captures/cage2_boxplots.png`, `03_captures/comparaison_deux_terrains.png`.

@@ -91,3 +91,15 @@ Ce dernier n'est pas qu'un commentaire faux. Le RL DroneSwarm est bien entraîn�
 La leçon est la même que celle du gagnant du loto, version code : un libellé n'est pas une mesure. J'ai ouvert le CSV avant de toucher au mémoire, les données étaient bonnes, c'est l'étiquette qui mentait. Ne jamais recopier ce qu'un script affiche sans regarder le fichier.
 
 Les anciens résultats à 100 parties restent en archives. Ils prouvent le -184,5 qui rejoint le peloton à -194 une fois mesuré sur 1000, et les trois faux champions. Ce sont des preuves, pas des déchets.
+
+## 16 juillet
+
+Contrôle 3, lancé hier soir, fini cette nuit. Deux objections m'attendaient à la soutenance et je préférais y répondre avec des chiffres plutôt qu'avec des arguments : la graine 42 serait tombée juste, et l'entraînement à 25 tours face à une évaluation à 30 aurait handicapé le RL. Trois modèles réentraînés, un seul facteur qui change à chaque fois, et les trois évalués sur le protocole publié à l'identique (1000 parties de 30 tours, graines appariées 1-1000).
+
+Graines 43 et 44, durée inchangée : -194,83 et -194,10, contre -194,35 pour le modèle publié. Moins d'un point d'écart entre trois entraînements indépendants. La graine n'explique rien. Durée portée à 30 tours, graine inchangée : -197,17, soit 2,8 points. L'écart est petit, et surtout il va dans le sens inverse de l'objection : entraîner à 30 ne rattrape rien.
+
+Ce que ça donne au total : quatre politiques PPO entraînées différemment atterrissent toutes entre -194 et -197, c'est-à-dire collées à l'action fixe (-194,38) et à une dizaine de points du hasard (-205,83). Ce n'est donc pas un entraînement raté, c'est un plafond. Le terrain plafonne tout le monde au même endroit, et changer la façon d'entraîner ne fait pas bouger le mur. L'objection « votre RL est mal réglé » ne tient plus.
+
+Deux erreurs en route, aucune n'a coûté de calcul. Le script a d'abord planté sur CybORG.__file__ : dans mes scripts je fais `from CybORG import CybORG`, donc j'importe la classe et pas le module, et une classe n'a pas de __file__. Corrigé avec inspect.getfile. Plus embêtant : ma première version faisait varier la graine avec TOURS = 30, alors que le modèle publié est entraîné à 25. J'aurais changé deux choses à la fois et je n'aurais pas su laquelle expliquait quoi. Repéré avant de lancer, en relisant. C'est exactement le genre de détail qui ruine un contrôle sans qu'on s'en aperçoive.
+
+Reste à faire : la comparaison appariée entre le modèle publié et g42_t30, graine par graine. Les intervalles se chevauchent mais l'appariement est plus fin, il tranchera vraiment. Tant que je ne l'ai pas faite, je n'écris pas « non significatif » dans le mémoire.
