@@ -79,3 +79,15 @@ La valeur à 100 parties donnait -215,6, à 1000 on trouve -211,5. L'écart est 
 Piège du jour : l'en-tête affiché à la fin du run disait « 1000 parties, graines 1-100 ». C'était juste le texte du print resté figé après le passage de PARTIES à 1000. Vérifié dans le CSV avant de toucher au mémoire : 1000 lignes, graines 1 à 1000, toutes uniques. Le libellé mentait, pas les données. Encore une fois : ne jamais recopier un chiffre sans ouvrir le fichier.
 
 Avec cette campagne, les cinq stratégies sont à 1000 parties sur les deux terrains. Plus d'asymétrie dans le mémoire.
+
+Audit complet du dossier de preuves dans la foulée, avant d'attaquer CAGE 4. Je voulais partir sur une base saine plutôt que traîner des trucs bancals. Bien m'en a pris.
+
+Le gros problème : les scripts que j'avais copiés dans preuves/ étaient les versions à 100 parties, alors que les campagnes finales ont tourné à 1000. Les vrais scripts de campagne (cage2_campagne.py, drones_campagne.py, cage2_llm_1000.py) étaient restés sur la machine, jamais recopiés. Autrement dit, aucun de mes 10 CSV finaux n'était reproductible depuis le dépôt. Ils y sont maintenant, et les 10 remontent chacun à leur script. Il manquait aussi ppo_droneswarm.zip, que drones_campagne.py charge pour rejouer la ligne RL.
+
+Quatre libellés mentaient. cage2_llm_1000.py et serie_llm_nuit.py annonçaient « 100 parties, graines 1-100 » alors que le code tourne à 1000 : c'est exactement ce qui m'a fait douter de mon propre résultat ce soir. dix_parties_bouton26.py affichait « Moyenne des 10 » en jouant 40 parties. Et entrainement_rl.py disait « même durée de partie que tout le reste du protocole » avec TOURS = 25, alors que tout le reste est passé à 30.
+
+Ce dernier n'est pas qu'un commentaire faux. Le RL DroneSwarm est bien entraîné sur des parties de 25 tours et évalué sur 30, alors que CAGE 2 est à 30 des deux côtés. L'écart est réel. Il est maintenant écrit noir sur blanc dans le code, et il ira dans les limites du mémoire.
+
+La leçon est la même que celle du gagnant du loto, version code : un libellé n'est pas une mesure. J'ai ouvert le CSV avant de toucher au mémoire, les données étaient bonnes, c'est l'étiquette qui mentait. Ne jamais recopier ce qu'un script affiche sans regarder le fichier.
+
+Les anciens résultats à 100 parties restent en archives. Ils prouvent le -184,5 qui rejoint le peloton à -194 une fois mesuré sur 1000, et les trois faux champions. Ce sont des preuves, pas des déchets.

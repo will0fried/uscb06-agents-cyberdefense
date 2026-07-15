@@ -9,7 +9,7 @@ from CybORG import CybORG
 from CybORG.Agents import B_lineAgent
 from CybORG.Agents.Wrappers import ChallengeWrapper
 
-TOURS = 30
+TOURS = 30                 # identique a l evaluation finale (cage2_campagne.py)
 PAS_TOTAL = 300_000
 
 class Env(gymn.Env):

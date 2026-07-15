@@ -42,5 +42,5 @@ RL > règle > action fixe > hasard tient sans ambiguïté.
 - LLM (llama3.2:3b) à 1 000 parties : −188,42 (σ = 54,38 ; IC 95 % [−191,79 ; −185,05]),
  0 invalide. CSV : `cage2_llm_final.csv`. Significativement pire que le hasard
  (IC entièrement inférieur à [−159,60 ; −149,82]). Campagne terminée le 13 juillet 2026.
-- DroneSwarm à 1 000 : fait (voir resultats_deux_terrains.md). LLM DroneSwarm : n = 1000 (terminé le 15 juillet, ~69 h de calcul)
- — campagne terminée.
+- DroneSwarm à 1 000 : fait (voir resultats_deux_terrains.md). LLM DroneSwarm : n = 1000,
+  terminé le 15 juillet après environ 69 h de calcul.

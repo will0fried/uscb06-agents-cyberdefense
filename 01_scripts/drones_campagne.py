@@ -12,7 +12,7 @@ from CybORG.Agents.Wrappers.FixedFlatWrapper import FixedFlatWrapper
 
 PARTIES, TOURS = 1000, 30
 FIXE = 12
-print('CONDITIONS — CybORG:', inspect.getfile(CybORG))
+print('CONDITIONS - CybORG:', inspect.getfile(CybORG))
 print('numpy', np.__version__, '| python', sys.version.split()[0], flush=True)
 modele = PPO.load("ppo_droneswarm")
 

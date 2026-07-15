@@ -1,3 +1,7 @@
+# DroneSwarm - 10 parties au hasard, seed 42, 25 tours. Premiere mesure de la ligne
+# "hasard" (moyenne -158,2), coherente avec le -164,2 de reference.
+# Exploration du 2 juillet, remplacee depuis par drones_campagne.py (1000 parties).
+# A copier dans ~/CybORG puis : python dix_parties.py
 import random, statistics
 import numpy as np
 from CybORG import CybORG
