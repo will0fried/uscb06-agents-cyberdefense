@@ -22,7 +22,7 @@ Les campagnes finales (1 000 parties de 30 tours, graines 1-1000 appariées) tie
 - `drones_campagne.py` : sur DroneSwarm, les quatre mêmes stratégies
 - `serie_llm_nuit.py` : sur DroneSwarm, le LLM
 
-En amont : `cage2_entrainement_rl.py` et `entrainement_rl.py` entraînent les deux modèles PPO ; `cage2_action_fixe.py` et `experience_complete.py` sont les balayages qui ont servi à identifier la meilleure action fixe de chaque terrain (#135 sur CAGE 2, #12 sur DroneSwarm).
+En amont : `cage2_entrainement_rl.py` et `entrainement_rl.py` entraînent les deux modèles PPO ; `cage2_action_fixe.py` et `experience_complete.py` sont les balayages qui ont servi à choisir l'action fixe de chaque terrain. Sur CAGE 2, #135 (Restore Enterprise2) est bien la meilleure : calibration sur les graines 1-50 (-57,29) puis test sur les graines neuves 51-100 (-57,43), les deux mesures concordent. Sur DroneSwarm, #12 n'est pas « la meilleure » et je ne le prétends pas : c'est la deuxième du balayage, retenue après l'effondrement de la première (#13, -115,5 au balayage, -157,3 sur échantillon neuf). Elle s'est effondrée aussi (-126,2 au balayage, -194,38 à mille parties) - c'est d'ailleurs un des artefacts que je raconte au chapitre 5. Sur ce terrain aucune action fixe ne se distingue, donc #12 vaut comme témoin, pas comme championne.
 
 ## Ce que ça donne
 
