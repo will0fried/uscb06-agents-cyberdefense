@@ -36,10 +36,13 @@ Un piège qui m'a coûté du temps : la version de CybORG qui s'exécute dépend
 
  python3 -c "import CybORG; print(CybORG.__file__)"
 
-Par exemple :
+Pour rejouer une campagne complète de bout en bout, copiez le script dans le dossier CybORG correspondant et lancez-le. Les quatre stratégies de CAGE 2 (hasard, action fixe, règle, RL), 1 000 parties de 30 tours :
 
- python3 01_scripts/cage2_regles.py
- python3 01_scripts/cage2_hasard_et_rl.py
+ cp 01_scripts/cage2_campagne.py ~/cage-challenge-2/CybORG/
+ cd ~/cage-challenge-2/CybORG
+ caffeinate -i python cage2_campagne.py
+
+Il vous faut `ppo_cage2.zip` dans le même dossier (il est dans `02_resultats_bruts/`), sinon relancez d'abord `cage2_entrainement_rl.py`. Le script écrit les quatre CSV `cage2_*_final.csv` cités dans le mémoire, et affiche en en-tête la version de CybORG chargée : c'est le garde-fou contre le piège ci-dessus. Même principe pour DroneSwarm avec `drones_campagne.py` depuis le dossier CybORG 3.1.
 
 ## À noter
 
