@@ -116,15 +116,30 @@ B_line, on le confronte à un adversaire inconnu. Protocole identique : 1000 par
 | Règle réactive | −14,33 | −12,26 | +2,07 | 0,80 | **0,56** |
 | Action fixe #135 | −57,30 | −55,99 | +1,31 | 1,06 | 4,47 |
 | Hasard | −154,71 | −34,60 | +120,11 | 78,93 | 16,28 |
+| LLM (llama3.2:3b) | −188,42 | −36,11 | **+152,31** | 54,36 | 16,60 |
 
-Comparaisons appariées à l'intérieur de Meander :
+La ligne LLM a été mesurée séparément (`01_scripts/cage2_llm_meander.py`, prompt identique au
+byte près à `cage2_llm_1000.py`, 1000 parties, 0 réponse invalide, 1058 minutes).
+
+Le classement change d'un attaquant à l'autre. Contre B_line : RL > règle > action fixe >
+hasard > LLM. Contre Meander : RL > règle > hasard > LLM > action fixe. L'action fixe #135
+passe de la 3ᵉ place à la dernière, le LLM remonte de la 5ᵉ à la 4ᵉ, et seuls le RL et la
+règle gardent leur rang.
+
+Comparaisons appariées à l'intérieur de Meander (cinq stratégies, dix paires) :
 
 | Comparaison | Δ moyen | IC 95 % du Δ | Victoires | Verdict |
 |---|---|---|---|---|
-| RL vs règle | +3,48 | [+3,35 ; +3,61] | 97,0 % (4 nuls) | significatif |
+| RL vs règle | +3,48 | [+3,35 ; +3,61] | 96,6 % (4 nuls) | significatif |
 | RL vs hasard | +25,81 | [+24,80 ; +26,83] | 99,6 % | significatif |
+| RL vs LLM | +27,32 | [+26,28 ; +28,36] | 100,0 % | significatif |
+| RL vs action fixe | +47,21 | [+46,90 ; +47,51] | 100,0 % | significatif |
 | Règle vs hasard | +22,34 | [+21,33 ; +23,35] | 99,7 % | significatif |
+| Règle vs LLM | +23,84 | [+22,82 ; +24,87] | 100,0 % | significatif |
+| Règle vs action fixe | +43,73 | [+43,45 ; +44,01] | 100,0 % | significatif |
+| **Hasard vs LLM** | **+1,51** | **[+0,06 ; +2,96]** | **54,5 % (2 nuls)** | **significatif, sans portée** |
 | Hasard vs action fixe | +21,39 | [+20,35 ; +22,44] | 92,6 % | significatif |
+| LLM vs action fixe | +19,89 | [+18,83 ; +20,94] | 91,2 % | significatif |
 
 Lecture, trois points.
 
