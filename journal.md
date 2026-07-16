@@ -48,6 +48,8 @@ Agent à règles que j'ai écrit (`agent_regles.py`) : « si dernière action = 
 
 Hasard sur les mêmes 100 parties appariées : -208,8. Comparaison appariée règle contre hasard : 54 victoires, 0 nul, 46 défaites - à peu près pile ou face, écart non significatif. La règle simple ne se distingue pas du hasard, cohérent avec la difficulté de DroneSwarm.
 
+Choix de l'action fixe des drones, puisque #13 est tombée : j'ai pris la deuxième du balayage, #12 (-126,2). Je note tout de suite la faiblesse, elle est la même que pour #13 : quand on sélectionne le meilleur parmi 56 mesures bruitées, le deuxième est contaminé exactement comme le premier. Et ça se vérifie, -126,2 au balayage puis -184,5 sur 50 parties. Je la garde quand même, mais comme témoin : sur ce terrain aucune action fixe ne se détache, l'intérêt n'est pas qu'elle soit bonne, c'est d'avoir une stratégie sans mémoire ni regard à comparer aux autres. Contrairement à CAGE 2 où #135 tient ses promesses en calibration et en test, ici je n'ai pas de championne à présenter, et c'est un résultat en soi.
+
 RL DroneSwarm réévalué sur 100 parties appariées, 30 tours : -200,0. Et le LLM llama3.2:3b, 100 parties de 30 tours (de nuit) : -215,6, 0 invalide sur 3000 décisions. Tableau drones : action fixe #12 -184,5, règle -197,6, RL -200, hasard -208,8, LLM -215,6. Tout tient dans environ 30 points, personne ne domine.
 
 Deuxième terrain : CAGE 2 (Scenario2, réseau d'entreprise) installé dans un venv séparé (~/cage-challenge-2, CybORG 2.1). Observation de 52 nombres, 145 actions, échelle de récompense différente (~-0,1 par tour), attaquant B_line. Contrôles : monde quasi déterministe (une action fixe donne le même score sur toutes les graines) ; le hasard n'est reproductible qu'avec action_space.seed. RL entraîné en 6 min : ep_rew_mean passe de -171 à -4,15, explained_variance de 0 à 0,79 - là il apprend, contrairement aux drones.
@@ -103,3 +105,17 @@ Ce que ça donne au total : quatre politiques PPO entraînées différemment att
 Deux erreurs en route, aucune n'a coûté de calcul. Le script a d'abord planté sur CybORG.__file__ : dans mes scripts je fais `from CybORG import CybORG`, donc j'importe la classe et pas le module, et une classe n'a pas de __file__. Corrigé avec inspect.getfile. Plus embêtant : ma première version faisait varier la graine avec TOURS = 30, alors que le modèle publié est entraîné à 25. J'aurais changé deux choses à la fois et je n'aurais pas su laquelle expliquait quoi. Repéré avant de lancer, en relisant. C'est exactement le genre de détail qui ruine un contrôle sans qu'on s'en aperçoive.
 
 Reste à faire : la comparaison appariée entre le modèle publié et g42_t30, graine par graine. Les intervalles se chevauchent mais l'appariement est plus fin, il tranchera vraiment. Tant que je ne l'ai pas faite, je n'écris pas « non significatif » dans le mémoire.
+
+E1 dans la foulée, pendant que le contrôle 3 finissait. Question : la hiérarchie de CAGE 2 survit-elle si on change d'attaquant ? Même campagne, même protocole, une seule chose modifiée : B_line remplacé par RedMeanderAgent. Le PPO n'est pas réentraîné, c'est tout l'intérêt : il a appris contre B_line et je le confronte à un adversaire qu'il n'a jamais vu.
+
+Résultats (B_line puis Meander) : RL -4,70 -> -8,79. Règle -14,33 -> -12,26. Action fixe -57,30 -> -55,99. Hasard -154,71 -> -34,60.
+
+Ce que ça dit, et je ne m'y attendais pas dans ce sens : Meander est un attaquant beaucoup plus doux sur 30 tours. Le hasard gagne 120 points, la règle gagne, l'action fixe gagne. Tout le monde profite du changement. Sauf le RL, qui est le seul à s'aggraver et double ses dégâts. L'environnement devient plus facile pour tous et lui recule : c'est du sur-apprentissage, montré au lieu d'être supposé.
+
+Deux chiffres à retenir. L'avance du RL sur la règle passe de +9,63 à +3,47, elle perd 64 %. Et l'action fixe #135 (Restore Enterprise2), choisie parce qu'Enterprise2 est sur le chemin de B_line, passe sous le hasard : la hiérarchie devient RL > règle > hasard > fixe. L'ordre change, contre un adversaire qui ne passe plus par là.
+
+Le kit E1 que j'avais préparé le 14 était périmé : il visait cage2_regles.py et cage2_hasard_et_rl.py, les versions à 100 parties que l'audit du 15 a rangées en archives. Les suivre aurait produit des CSV hors protocole. Refait depuis cage2_campagne.py : cage2_campagne_meander.py. Leçon : un kit vieillit dès qu'on touche au dépôt.
+
+Reste à faire avant d'écrire : la comparaison appariée RL vs règle à l'intérieur de Meander. Les moyennes suffisent à voir le sens, pas à écrire « significatif ».
+
+Le §4.7 se termine encore par « Vérifier cette hypothèse en changeant d'adversaire constitue le prolongement le plus direct de ce travail ». C'est fait. La phrase doit devenir un résultat.

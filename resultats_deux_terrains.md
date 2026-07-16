@@ -103,6 +103,53 @@ Script : `01_scripts/controle3_rl_graines_duree.py`. CSV : `controle3_*.csv`.
 À faire : comparaison appariée publié vs g42_t30 (les IC se chevauchent, l'appariement
 tranchera). Tant qu'elle n'est pas faite, ne pas écrire « non significatif ».
 
+## E1 : robustesse au changement d'adversaire (16 juillet)
+
+Même campagne que CAGE 2, une seule chose modifiée : l'attaquant B_lineAgent (chemin fixe)
+remplacé par RedMeanderAgent (exploration). Le PPO n'est PAS réentraîné : il a appris contre
+B_line, on le confronte à un adversaire inconnu. Protocole identique : 1000 parties de
+30 tours, graines appariées 1-1000. Script : `01_scripts/cage2_campagne_meander.py`.
+
+| Stratégie | B_line | Meander | Écart | σ B_line | σ Meander |
+|---|---|---|---|---|---|
+| RL (PPO) | −4,70 | **−8,79** | **−4,09** | 3,40 | 2,02 |
+| Règle réactive | −14,33 | −12,26 | +2,07 | 0,80 | **0,56** |
+| Action fixe #135 | −57,30 | −55,99 | +1,31 | 1,06 | 4,47 |
+| Hasard | −154,71 | −34,60 | +120,11 | 78,93 | 16,28 |
+
+Comparaisons appariées à l'intérieur de Meander :
+
+| Comparaison | Δ moyen | IC 95 % du Δ | Victoires | Verdict |
+|---|---|---|---|---|
+| RL vs règle | +3,48 | [+3,35 ; +3,61] | 97,0 % (4 nuls) | significatif |
+| RL vs hasard | +25,81 | [+24,80 ; +26,83] | 99,6 % | significatif |
+| Règle vs hasard | +22,34 | [+21,33 ; +23,35] | 99,7 % | significatif |
+| Hasard vs action fixe | +21,39 | [+20,35 ; +22,44] | 92,6 % | significatif |
+
+Lecture, trois points.
+
+1. Meander est un attaquant plus doux sur 30 tours : le hasard gagne 120 points, la règle
+   gagne, l'action fixe gagne. **Le RL est le seul à reculer** (−4,09). L'environnement
+   devient plus facile pour tout le monde et lui s'aggrave : sur-apprentissage sur
+   l'attaquant d'entraînement, montré et non supposé.
+
+2. Le RL ne s'effondre pas, il maigrit : il gagne encore 97 % des parties contre la règle,
+   mais son avance passe de **+9,63 à +3,48**, soit −64 %.
+
+3. **Inversion de hiérarchie** : l'action fixe #135 (Restore Enterprise2), choisie parce
+   qu'Enterprise2 est sur le chemin de B_line, passe **sous le hasard** (+21,39 pour le
+   hasard, 92,6 % des parties). L'ordre devient RL > règle > hasard > action fixe.
+   Une stratégie taillée pour un adversaire précis devient pire que le dé face à un autre.
+
+Les variances racontent la même histoire : celle du hasard s'écroule (78,93 → 16,28, B_line
+détruit ou pas, Meander fait des dégâts moyens réguliers), celle de l'action fixe augmente
+(1,06 → 4,47, son sort dépend maintenant d'où Meander erre), et la règle reste la plus
+stable des quatre sur les deux attaquants (σ = 0,56). Matière directe pour le §4.5 :
+elle est prévisible même face à un adversaire qu'elle n'a jamais vu.
+
+À compléter : le LLM contre Meander (`cage2_llm_meander.py`, en cours). Sans lui le tableau
+a 4 lignes là où les autres en ont 5.
+
 ## Fichiers
 - CSV : `cage2_*_final.csv`, `drones_*_final.csv` (dans 02_resultats_bruts/).
 - Figures : `03_captures/cage2_boxplots.png`, `03_captures/comparaison_deux_terrains.png`.
