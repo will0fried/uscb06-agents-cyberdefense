@@ -162,8 +162,48 @@ détruit ou pas, Meander fait des dégâts moyens réguliers), celle de l'action
 stable des quatre sur les deux attaquants (σ = 0,56). Matière directe pour le §4.5 :
 elle est prévisible même face à un adversaire qu'elle n'a jamais vu.
 
-À compléter : le LLM contre Meander (`cage2_llm_meander.py`, en cours). Sans lui le tableau
-a 4 lignes là où les autres en ont 5.
+## E2 : l'espace d'action du LLM sur CAGE 2 — 41 contre 145 (18 juillet)
+
+Dans la campagne publiée, le LLM choisissait parmi 41 actions (Sleep, Monitor, Analyse/Remove/
+Restore par serveur ; leurres exclus) quand le hasard et le PPO en avaient 145. C'était la seule
+asymétrie du dispositif sur CAGE 2 (sur DroneSwarm le LLM joue déjà les 56 actions). Campagne
+refaite avec le seul filtre `MENU` retiré : le LLM voit les 145 actions. Script :
+`01_scripts/cage2_llm_145.py`. 1000 parties, graines 1-1000, 0 invalide, 1901 minutes.
+
+| LLM sur CAGE 2 / B_line | Moyenne | σ | Médiane | Actions utilisées |
+|---|---|---|---|---|
+| 41 actions (publié) | −188,42 | 54,36 | −220,30 | — |
+| 145 actions | **−176,06** | **83,96** | −222,80 | **16 sur 145** |
+
+Trois résultats, dont deux contre-intuitifs (prédictions écrites avant lancement : Will −200 /
+0 % invalides ; Claude −200 à −230 / 5-20 % invalides — les deux fausses sur la moyenne).
+
+1. **Plus d'options ne le dégrade pas, ça l'améliore de 12 points** (apparié +12,36
+   [+5,88 ; +18,85], significatif). MAIS il ne gagne que **333 parties sur 1000** : sur les
+   deux tiers des scénarios il fait aussi bien ou pire. L'amélioration tient à quelques gros
+   coups, pas à un meilleur jeu — d'où la variance qui passe de 54 à 84.
+
+2. **Il n'explore pas l'espace qu'on lui rend : il s'y effondre davantage.** Sur 145 actions
+   il en utilise 16, joue **« Restore Enterprise0 » 56 % du temps** (16 808 coups sur 30 000),
+   Monitor 26,6 %, et **zéro leurre sur 30 000 coups**. Donné un grand espace d'action, le LLM
+   converge vers une quasi-politique constante — exactement ce que fait le PPO sur DroneSwarm
+   (contrôle 4 : une action 900/900). Deux technologies opposées, même effondrement. Seule la
+   règle écrite à la main utilise délibérément l'espace d'action. C'est le fil qui relie le
+   chapitre PoC, le contrôle 4 et le chapitre LLM.
+
+3. **Le résultat de départ survit** : LLM 145 vs hasard = **−21,35 [−28,51 ; −14,19]**,
+   significatif, il ne gagne que 366/1000. Le LLM reste sous le hasard, avec l'espace complet.
+
+Décomposition de variance, CAGE 2, avec le LLM 145 inclus symétriquement : stratégie 65,6 %,
+graine 6,9 %, interaction 27,6 %. **Plus bas que les 69,3 % à 4 stratégies** : la variance du
+LLM (σ 84) alimente l'interaction, pas la stratégie. Donc **garder le tableau 4.3 à 4 stratégies**
+(LLM exclu des deux côtés, 69,3 % vs 0,2 %, cohérent et déjà écrit) et traiter le LLM à part.
+Ne jamais utiliser le 75,1 % calculé avec le LLM 41 : il reposait sur l'asymétrie corrigée ici.
+
+## E1 : le LLM contre Meander — ligne finale
+
+La ligne LLM du tableau E1 ci-dessus (−188,42 / −36,11) utilise le LLM à 41 actions, cohérent
+avec la campagne publiée. Si le mémoire bascule tout le LLM sur 145, refaire aussi Meander à 145.
 
 ## Fichiers
 - CSV : `cage2_*_final.csv`, `drones_*_final.csv` (dans 02_resultats_bruts/).
