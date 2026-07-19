@@ -147,3 +147,17 @@ Le vrai résultat est dans les actions, que le script a journalisées cette fois
 Le résultat de départ tient : LLM 145 vs hasard = -21,35 [-28,51 ; -14,19], significatif, il gagne 366/1000. Il reste sous le hasard même avec l'espace complet. Ce qui ne tient pas, c'est l'explication qu'on avait la veille (« il s'effondre parce que l'espace est trop grand ») : l'espace plus grand ne l'a pas fait s'effondrer davantage en score, il l'a fait converger plus fort sur une action. La bonne formulation n'est pas « trop d'options le noient », c'est « il n'apprend pas à utiliser les options, quel qu'en soit le nombre ».
 
 Décision sur le tableau 4.3 : le garder à 4 stratégies. Avec le LLM 145 inclus, la part de la stratégie sur CAGE 2 tombe de 69,3 % à 65,6 %, parce que la variance du LLM alimente l'interaction. Le 75,1 % calculé la veille avec le LLM 41 était asymétrique et est abandonné.
+
+## 18 juillet (suite) — PoC a temperature 0
+
+Verification de conditions : les 30 runs du PoC de jeudi tournaient a temperature 0,1, alors que le LLM CybORG tourne a 0. Deux facteurs melanges. Refait a temperature 0 (config.py, un seul caractere), 30 runs.
+
+Prediction avant lancement : Will 1 signature, moi 2-3. Will avait raison.
+
+Resultat : 1 seule signature sur 30. Les 30 runs jouent exactement la meme chose (get_recent_events, list_5g_sessions, isolate_pod, MISSION_TERMINEE). A 0,1 il y avait 3 signatures, a 0,0 il y en a 1 : retirer le hasard du sampling le fige completement.
+
+Le contraste avec le controle 2 est le resultat : le meme modele (llama3.2:3b, temperature 0) est parfaitement constant dans le PoC (5 outils, 1 signature sur 30) et chaotique dans CybORG (145 actions, diverge des le tour 4, ecart de 168 points entre trois rejeux de la meme graine). Meme modele, meme temperature, comportements opposes. La seule difference est la taille de l'espace d'action. Ca confirme la campagne 145 d'hier : le chaos du LLM dans CybORG ne vient pas du sampling (a T=0 il serait stable si l'espace etait petit), il vient de l'espace d'action lui-meme.
+
+Reserve a ecrire : constant n'est pas correct. Les 30 runs isolent le SMF (la victime) et n'appellent jamais terminate_5g_session. Fiable et faux, ce qui est pire qu'instable.
+
+Fichier : 02_resultats_bruts/poc_30runs_temp0.txt.
