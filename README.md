@@ -26,6 +26,16 @@ Les campagnes finales (1 000 parties de 30 tours, graines 1-1000 appariées) tie
 
 En amont : `cage2_entrainement_rl.py` et `entrainement_rl.py` entraînent les deux modèles PPO ; `cage2_action_fixe.py` et `experience_complete.py` sont les balayages qui ont servi à choisir l'action fixe de chaque terrain. Sur CAGE 2, #135 (Restore Enterprise2) est bien la meilleure : calibration sur les graines 1-50 (-57,29) puis test sur les graines neuves 51-100 (-57,43), les deux mesures concordent. Sur DroneSwarm, #12 n'est pas « la meilleure » et je ne le prétends pas : c'est la deuxième du balayage, retenue après l'effondrement de la première (#13, -115,5 au balayage, -157,3 sur échantillon neuf). Elle s'est effondrée aussi (-126,2 au balayage, -194,38 à mille parties) - c'est d'ailleurs un des artefacts que je raconte au chapitre 5. Sur ce terrain aucune action fixe ne se distingue, donc #12 vaut comme témoin, pas comme championne.
 
+## Expériences complémentaires et contrôles
+
+Au-delà des quatre campagnes principales, plusieurs scripts produisent des résultats cités dans le mémoire, chacun écrivant les CSV correspondants :
+
+- `cage2_llm_145.py` : sur CAGE 2, le LLM avec le menu complet des 145 actions (au lieu du menu restreint) - produit `cage2_llm_145_final.csv` (-176,06).
+- `cage2_campagne_meander.py` et `cage2_llm_meander.py` : les mêmes stratégies face à l'attaquant `Meander` au lieu de `B_line` - produisent les `cage2_*_meander.csv`.
+- `entrainement_rl_normalise.py` : contrôle de représentation. Réentraîne le PPO de DroneSwarm avec une observation normalisée (VecNormalize), tout le reste égal par ailleurs (même réseau, même budget de 300 000 pas, même graine), puis l'évalue au même protocole apparié - produit `drones_rl_norm_final.csv` (-194,11, indistinguable du PPO brut : le plafond n'est pas un artefact d'échelle). Le script entraîne puis évalue en une seule exécution ; le modèle normalisé n'est pas versionné, il suffit de relancer le script depuis le dossier CybORG 3.1.
+- `controle3_rl_graines_duree.py` : contrôle de robustesse du PPO (graines et durée d'épisode) - produit les `controle3_*.csv`. Les contrôles `controle4_politique_constante.py` et `controle5_observation_vivante.py` vérifient respectivement que la politique apprise n'est pas constante et que l'observation évolue bien au fil de la partie.
+- `analyse_profondeur.py` : recalcule, à partir des CSV bruts, la décomposition de variance (stratégie vs graine) et les queues de distribution citées au chapitre 4.
+
 ## Ce que ça donne
 
 Sur CAGE 2, les stratégies se classent nettement : le RL devant, puis la règle, puis l'action fixe, loin devant le hasard, et le LLM en dernier - plus mauvais que le hasard. Sur DroneSwarm, tout se tasse : les écarts existent encore statistiquement mais restent faibles, et aucune stratégie ne prend vraiment le dessus. Les chiffres exacts et leur interprétation sont dans le mémoire ; les données brutes sont dans `02_resultats_bruts/`.
