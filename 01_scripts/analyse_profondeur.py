@@ -1,4 +1,4 @@
-# analyse_profondeur.py — à lancer depuis preuves/02_resultats_bruts : python3 ../../analyse_profondeur.py
+# analyse_profondeur.py - à lancer depuis preuves/02_resultats_bruts : python3 ../../analyse_profondeur.py
 # Calcule : A) queues de distribution  B) corrélations par graine  C) décomposition de variance graine/stratégie  D) taux de parties catastrophiques
 # Aucune dépendance externe (stdlib uniquement). Vérifie mes chiffres sur TA machine avant insertion dans le mémoire.
 import csv, math, statistics as st

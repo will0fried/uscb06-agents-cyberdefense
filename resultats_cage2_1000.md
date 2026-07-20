@@ -8,16 +8,16 @@ Relevé du 12 juillet 2026. Source des chiffres pour le chapitre 4.4.
 - Toutes les stratégies dans le même venv (`.venv`, numpy 2.5.0) - conditions identiques.
 - Scripts : ceux de `01_scripts/` (les mêmes que la campagne à 100 parties, relancés à 1 000). CSV : `cage2_*_final.csv`.
 - Reproductibilité : run relancé une 2ᵉ fois, chiffres identiques au centième.
-- Contrôle venv : hasard = −154,71 aussi bien dans `.venv` que dans `cyborg-env`, donc le venv n'a aucun effet.
+- Contrôle venv : hasard = -154,71 aussi bien dans `.venv` que dans `cyborg-env`, donc le venv n'a aucun effet.
 
 ## Résultats (moyenne ± IC 95 %)
 
 | Stratégie | n | Moyenne | Écart-type | IC 95 % |
 |---|---|---|---|---|
-| RL (PPO) | 1000 | −4,70 | 3,40 | [−4,91 ; −4,49] |
-| Règle réactive (façon AICA) | 1000 | −14,33 | 0,80 | [−14,38 ; −14,28] |
-| Action fixe (#135 Restore Enterprise2) | 1000 | −57,30 | 1,06 | [−57,36 ; −57,23] |
-| Hasard | 1000 | −154,71 | 78,93 | [−159,60 ; −149,82] |
+| RL (PPO) | 1000 | -4,70 | 3,40 | [-4,91 ; -4,49] |
+| Règle réactive (façon AICA) | 1000 | -14,33 | 0,80 | [-14,38 ; -14,28] |
+| Action fixe (#135 Restore Enterprise2) | 1000 | -57,30 | 1,06 | [-57,36 ; -57,23] |
+| Hasard | 1000 | -154,71 | 78,93 | [-159,60 ; -149,82] |
 
 Les intervalles de confiance ne se recouvrent pas : le classement
 RL > règle > action fixe > hasard tient sans ambiguïté.
@@ -39,8 +39,8 @@ RL > règle > action fixe > hasard tient sans ambiguïté.
 - À contraster avec DroneSwarm (terrain chaotique) où aucune stratégie ne domine, ce qui appuie la
  thèse « le terrain décide autant que l'algorithme ».
 - Figure : `preuves/03_captures/cage2_boxplots.png`.
-- LLM (llama3.2:3b) à 1 000 parties : −188,42 (σ = 54,38 ; IC 95 % [−191,79 ; −185,05]),
+- LLM (llama3.2:3b) à 1 000 parties : -188,42 (σ = 54,38 ; IC 95 % [-191,79 ; -185,05]),
  0 invalide. CSV : `cage2_llm_final.csv`. Significativement pire que le hasard
- (IC entièrement inférieur à [−159,60 ; −149,82]). Campagne terminée le 13 juillet 2026.
+ (IC entièrement inférieur à [-159,60 ; -149,82]). Campagne terminée le 13 juillet 2026.
 - DroneSwarm à 1 000 : fait (voir resultats_deux_terrains.md). LLM DroneSwarm : n = 1000,
   terminé le 15 juillet après environ 69 h de calcul.
