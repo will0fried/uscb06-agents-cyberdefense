@@ -3,12 +3,12 @@
 
 LangGraph nous demande un TypedDict qui décrit toutes les valeurs que les
 nœuds vont produire et consommer. Cette structure reflète les modules AICA :
-- raw_observations  ← sensing
-- structured_facts  ← perception
-- world_state       ← world_model
-- planned_action    ← decision
-- executed_actions  ← action
-- messages          ← historique LLM (pour le tool calling)
+- raw_observations  <- sensing
+- structured_facts  <- perception
+- world_state       <- world_model
+- planned_action    <- decision
+- executed_actions  <- action
+- messages          <- historique LLM (pour le tool calling)
 """
 from typing import Annotated, Any, Dict, List, Optional, TypedDict
 from langchain_core.messages import BaseMessage

@@ -10,13 +10,13 @@ modèle RL propres à chaque environnement). Reproductibilité vérifiée (2 run
 
 | Stratégie | Moyenne | σ | IC 95 % |
 |---|---|---|---|
-| RL (PPO) | −4,70 | 3,4 | [−4,91 ; −4,49] |
-| Règle réactive | −14,33 | 0,8 | [−14,38 ; −14,28] |
-| Action fixe (#135 Restore Enterprise2) | −57,30 | 1,1 | [−57,36 ; −57,23] |
-| Hasard | −154,71 | 78,9 | [−159,60 ; −149,82] |
-| LLM (llama3.2:3b, n=1000) | −188,42 | 54,38 | [−191,79 ; −185,05] |
+| RL (PPO) | -4,70 | 3,4 | [-4,91 ; -4,49] |
+| Règle réactive | -14,33 | 0,8 | [-14,38 ; -14,28] |
+| Action fixe (#135 Restore Enterprise2) | -57,30 | 1,1 | [-57,36 ; -57,23] |
+| Hasard | -154,71 | 78,9 | [-159,60 ; -149,82] |
+| LLM (llama3.2:3b, n=1000) | -188,42 | 54,38 | [-191,79 ; -185,05] |
 
-(n=1000 remplace la valeur provisoire n=100 de −190,03 [−200,21 ; −179,85], relevée le 13 juil ; CSV cage2_llm_final.csv, 0 invalide.)
+(n=1000 remplace la valeur provisoire n=100 de -190,03 [-200,21 ; -179,85], relevée le 13 juil ; CSV cage2_llm_final.csv, 0 invalide.)
 
 Le LLM est significativement pire que le hasard (IC disjoints).
 Intervalles tous disjoints : le classement RL > règle > action fixe > hasard
@@ -26,11 +26,11 @@ tient sans ambiguïté.
 
 | Stratégie | Moyenne | σ | IC 95 % |
 |---|---|---|---|
-| RL (PPO) | −194,35 | 116,1 | [−201,54 ; −187,15] |
-| Action fixe (#12) | −194,38 | 116,4 | [−201,60 ; −187,17] |
-| Règle réactive | −197,56 | 112,2 | [−204,52 ; −190,60] |
-| Hasard | −205,83 | 107,6 | [−212,50 ; −199,16] |
-| LLM (llama3.2:3b, n=1000) | −211,50 | 111,28 | [−218,40 ; −204,61] |
+| RL (PPO) | -194,35 | 116,1 | [-201,54 ; -187,15] |
+| Action fixe (#12) | -194,38 | 116,4 | [-201,60 ; -187,17] |
+| Règle réactive | -197,56 | 112,2 | [-204,52 ; -190,60] |
+| Hasard | -205,83 | 107,6 | [-212,50 ; -199,16] |
+| LLM (llama3.2:3b, n=1000) | -211,50 | 111,28 | [-218,40 ; -204,61] |
 
 Les intervalles de confiance se chevauchent largement. Mais l'analyse appariée
 (la même que sur CAGE 2) détecte des écarts significatifs - le chevauchement des IC ne
@@ -41,9 +41,9 @@ prouve pas l'absence de différence :
 | RL vs hasard | +11,48 | [+4,07 ; +18,89] | 553/1000 | significatif |
 | Règle vs hasard | +8,27 | [+1,11 ; +15,42] | 536/1000 | significatif |
 | Action fixe vs hasard | +11,44 | [+4,18 ; +18,71] | 542/1000 | significatif |
-| RL vs règle | +3,21 | [−4,69 ; +11,11] | 495/1000 | non significatif |
-| RL vs action fixe | +0,04 | [−6,77 ; +6,85] | 460/1000 | non significatif |
-| LLM vs hasard | −5,68 | [−12,46 ; +1,11] | 481/1000 | non significatif |
+| RL vs règle | +3,21 | [-4,69 ; +11,11] | 495/1000 | non significatif |
+| RL vs action fixe | +0,04 | [-6,77 ; +6,85] | 460/1000 | non significatif |
+| LLM vs hasard | -5,68 | [-12,46 ; +1,11] | 481/1000 | non significatif |
 
 Le RL, la règle et l'action fixe battent le hasard de façon statistiquement
 significative mais pratiquement négligeable (~11 points, 55 % des parties) - contre
@@ -53,7 +53,7 @@ significative mais pratiquement négligeable (~11 points, 55 % des parties) - co
 ## Le résultat central
 
 Le même algorithme PPO, avec le même code :
-- sur CAGE 2, domine tout de façon nette (−4,70, intervalle disjoint) ;
+- sur CAGE 2, domine tout de façon nette (-4,70, intervalle disjoint) ;
 - sur DroneSwarm, ne devance plus le hasard que de façon marginale (+11 pts, 55 % - significatif à l'appariement mais négligeable en pratique).
 
 « Le terrain décide autant que l'algorithme. » La performance d'un agent ne dépend
@@ -71,10 +71,10 @@ Attention : les scores ne se comparent pas d'un terrain à l'autre (échelles de
 récompense différentes) ; on compare le motif - hiérarchie nette vs chevauchement.
 
 ## Validation contre le journal (campagne v2, 100 parties)
-- Règle drones : −197,6 (v2) puis −197,56 (1000). Identique.
-- Hasard drones : −208,8 puis −205,83 (écart 3, dans le bruit).
-- RL drones : −200,0 puis −194,35 (écart 5,6, n=100 côté ancien).
-- Action fixe drones : −184,5 (n=50) puis −194,38 (1000) : l'ancienne valeur sur
+- Règle drones : -197,6 (v2) puis -197,56 (1000). Identique.
+- Hasard drones : -208,8 puis -205,83 (écart 3, dans le bruit).
+- RL drones : -200,0 puis -194,35 (écart 5,6, n=100 côté ancien).
+- Action fixe drones : -184,5 (n=50) puis -194,38 (1000) : l'ancienne valeur sur
  50 parties surestimait de ~10 points, illustration de plus de l'importance
  du grand échantillon.
 
@@ -86,17 +86,17 @@ protocole publié (1000 parties de 30 tours, graines appariées 1-1000).
 
 | Modèle | Ce qui change | Moyenne | IC 95 % |
 |---|---|---|---|
-| publié (g42, 25 tours) | référence | −194,35 | [−201,54 ; −187,15] |
-| g43_t25 | graine seule | −194,83 | [−201,95 ; −187,72] |
-| g44_t25 | graine seule | −194,10 | [−201,06 ; −187,14] |
-| g42_t30 | durée seule | −197,17 | [−204,31 ; −190,03] |
+| publié (g42, 25 tours) | référence | -194,35 | [-201,54 ; -187,15] |
+| g43_t25 | graine seule | -194,83 | [-201,95 ; -187,72] |
+| g44_t25 | graine seule | -194,10 | [-201,06 ; -187,14] |
+| g42_t30 | durée seule | -197,17 | [-204,31 ; -190,03] |
 
 Lecture : trois entraînements indépendants (g42, g43, g44) tiennent en 0,73 point. La graine
 n'explique rien. L'entraînement à 30 tours donne 2,8 points d'écart, orienté dans le sens
 inverse de l'objection (entraîner à 30 ne rattrape rien).
 
-Les quatre politiques PPO se rangent entre −194 et −197, soit collées à l'action fixe
-(−194,38) et à une dizaine de points du hasard (−205,83). Le plafond de DroneSwarm ne
+Les quatre politiques PPO se rangent entre -194 et -197, soit collées à l'action fixe
+(-194,38) et à une dizaine de points du hasard (-205,83). Le plafond de DroneSwarm ne
 dépend ni de la graine ni de la durée d'entraînement : il tient au terrain.
 
 Script : `01_scripts/controle3_rl_graines_duree.py`. CSV : `controle3_*.csv`.
@@ -112,11 +112,11 @@ B_line, on le confronte à un adversaire inconnu. Protocole identique : 1000 par
 
 | Stratégie | B_line | Meander | Écart | σ B_line | σ Meander |
 |---|---|---|---|---|---|
-| RL (PPO) | −4,70 | **−8,79** | **−4,09** | 3,40 | 2,02 |
-| Règle réactive | −14,33 | −12,26 | +2,07 | 0,80 | **0,56** |
-| Action fixe #135 | −57,30 | −55,99 | +1,31 | 1,06 | 4,47 |
-| Hasard | −154,71 | −34,60 | +120,11 | 78,93 | 16,28 |
-| LLM (llama3.2:3b) | −188,42 | −36,11 | **+152,31** | 54,36 | 16,60 |
+| RL (PPO) | -4,70 | **-8,79** | **-4,09** | 3,40 | 2,02 |
+| Règle réactive | -14,33 | -12,26 | +2,07 | 0,80 | **0,56** |
+| Action fixe #135 | -57,30 | -55,99 | +1,31 | 1,06 | 4,47 |
+| Hasard | -154,71 | -34,60 | +120,11 | 78,93 | 16,28 |
+| LLM (llama3.2:3b) | -188,42 | -36,11 | **+152,31** | 54,36 | 16,60 |
 
 La ligne LLM a été mesurée séparément (`01_scripts/cage2_llm_meander.py`, prompt identique au
 byte près à `cage2_llm_1000.py`, 1000 parties, 0 réponse invalide, 1058 minutes).
@@ -144,12 +144,12 @@ Comparaisons appariées à l'intérieur de Meander (cinq stratégies, dix paires
 Lecture, trois points.
 
 1. Meander est un attaquant plus doux sur 30 tours : le hasard gagne 120 points, la règle
-   gagne, l'action fixe gagne. **Le RL est le seul à reculer** (−4,09). L'environnement
+   gagne, l'action fixe gagne. **Le RL est le seul à reculer** (-4,09). L'environnement
    devient plus facile pour tout le monde et lui s'aggrave : sur-apprentissage sur
    l'attaquant d'entraînement, montré et non supposé.
 
 2. Le RL ne s'effondre pas, il maigrit : il gagne encore 97 % des parties contre la règle,
-   mais son avance passe de **+9,63 à +3,48**, soit −64 %.
+   mais son avance passe de **+9,63 à +3,48**, soit -64 %.
 
 3. **Inversion de hiérarchie** : l'action fixe #135 (Restore Enterprise2), choisie parce
    qu'Enterprise2 est sur le chemin de B_line, passe **sous le hasard** (+21,39 pour le
@@ -162,7 +162,7 @@ détruit ou pas, Meander fait des dégâts moyens réguliers), celle de l'action
 stable des quatre sur les deux attaquants (σ = 0,56). Matière directe pour le §4.5 :
 elle est prévisible même face à un adversaire qu'elle n'a jamais vu.
 
-## E2 : l'espace d'action du LLM sur CAGE 2 — 41 contre 145 (18 juillet)
+## E2 : l'espace d'action du LLM sur CAGE 2 - 41 contre 145 (18 juillet)
 
 Dans la campagne publiée, le LLM choisissait parmi 41 actions (Sleep, Monitor, Analyse/Remove/
 Restore par serveur ; leurres exclus) quand le hasard et le PPO en avaient 145. C'était la seule
@@ -172,26 +172,26 @@ refaite avec le seul filtre `MENU` retiré : le LLM voit les 145 actions. Script
 
 | LLM sur CAGE 2 / B_line | Moyenne | σ | Médiane | Actions utilisées |
 |---|---|---|---|---|
-| 41 actions (publié) | −188,42 | 54,36 | −220,30 | — |
-| 145 actions | **−176,06** | **83,96** | −222,80 | **16 sur 145** |
+| 41 actions (publié) | -188,42 | 54,36 | -220,30 | - |
+| 145 actions | **-176,06** | **83,96** | -222,80 | **16 sur 145** |
 
-Trois résultats, dont deux contre-intuitifs (prédictions écrites avant lancement : Will −200 /
-0 % invalides ; Claude −200 à −230 / 5-20 % invalides — les deux fausses sur la moyenne).
+Trois résultats, dont deux contre-intuitifs (prédictions écrites avant lancement : Will -200 /
+0 % invalides ; Claude -200 à -230 / 5-20 % invalides - les deux fausses sur la moyenne).
 
 1. **Plus d'options ne le dégrade pas, ça l'améliore de 12 points** (apparié +12,36
    [+5,88 ; +18,85], significatif). MAIS il ne gagne que **333 parties sur 1000** : sur les
    deux tiers des scénarios il fait aussi bien ou pire. L'amélioration tient à quelques gros
-   coups, pas à un meilleur jeu — d'où la variance qui passe de 54 à 84.
+   coups, pas à un meilleur jeu - d'où la variance qui passe de 54 à 84.
 
 2. **Il n'explore pas l'espace qu'on lui rend : il s'y effondre davantage.** Sur 145 actions
    il en utilise 16, joue **« Restore Enterprise0 » 56 % du temps** (16 808 coups sur 30 000),
    Monitor 26,6 %, et **zéro leurre sur 30 000 coups**. Donné un grand espace d'action, le LLM
-   converge vers une quasi-politique constante — exactement ce que fait le PPO sur DroneSwarm
+   converge vers une quasi-politique constante - exactement ce que fait le PPO sur DroneSwarm
    (contrôle 4 : une action 900/900). Deux technologies opposées, même effondrement. Seule la
    règle écrite à la main utilise délibérément l'espace d'action. C'est le fil qui relie le
    chapitre PoC, le contrôle 4 et le chapitre LLM.
 
-3. **Le résultat de départ survit** : LLM 145 vs hasard = **−21,35 [−28,51 ; −14,19]**,
+3. **Le résultat de départ survit** : LLM 145 vs hasard = **-21,35 [-28,51 ; -14,19]**,
    significatif, il ne gagne que 366/1000. Le LLM reste sous le hasard, avec l'espace complet.
 
 Décomposition de variance, CAGE 2, avec le LLM 145 inclus symétriquement : stratégie 65,6 %,
@@ -200,9 +200,9 @@ LLM (σ 84) alimente l'interaction, pas la stratégie. Donc **garder le tableau 
 (LLM exclu des deux côtés, 69,3 % vs 0,2 %, cohérent et déjà écrit) et traiter le LLM à part.
 Ne jamais utiliser le 75,1 % calculé avec le LLM 41 : il reposait sur l'asymétrie corrigée ici.
 
-## E1 : le LLM contre Meander — ligne finale
+## E1 : le LLM contre Meander - ligne finale
 
-La ligne LLM du tableau E1 ci-dessus (−188,42 / −36,11) utilise le LLM à 41 actions, cohérent
+La ligne LLM du tableau E1 ci-dessus (-188,42 / -36,11) utilise le LLM à 41 actions, cohérent
 avec la campagne publiée. Si le mémoire bascule tout le LLM sur 145, refaire aussi Meander à 145.
 
 ## Fichiers
