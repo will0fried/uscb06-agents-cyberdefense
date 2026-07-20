@@ -1,0 +1,27 @@
+# Dépendances Python pour le PoC AICA-en-LangGraph
+# Testé avec Python 3.11+
+
+# LangGraph / LangChain - coeur du framework agentique
+langgraph>=0.2.50
+langchain>=0.3.0
+langchain-core>=0.3.0
+
+# Provider LLM local via Ollama
+langchain-ollama>=0.2.0
+
+# Provider LLM cloud (optionnel - quand tu auras une clé)
+# Décommente celui qui correspond à ta clé :
+# langchain-openai>=0.2.0
+# langchain-anthropic>=0.2.0
+# langchain-mistralai>=0.2.0
+
+# Interaction Kubernetes (pour la phase 2)
+kubernetes>=31.0.0
+
+# Utilitaires
+python-dotenv>=1.0.0
+pydantic>=2.5.0
+rich>=13.0.0  # affichage console amélioré
+
+# Tests
+pytest>=8.0.0

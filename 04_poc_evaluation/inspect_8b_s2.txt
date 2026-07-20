@@ -1,0 +1,14 @@
+
+=== SCENARIO : Session PDU suspecte (IMSI hors plage) ===
+Reponse attendue : [('terminate_5g_session', '0x7a8b9c')]
+
+--- Ce que le LLM a dit et fait, message par message ---
+  [TEXTE HumanMessage]  Objectif : Analyser l'etat du coeur 5G dans le namespace 'core5g' et, si une menace claire est identifiee, prendre l'action de reponse appropriee (isoler le pod source de l'attaque, ou terminer une session malveillante). N'agis PAS si rien ne le justifie. Ne prends jamais une action qui degraderait un service legitime.
+
+Faits structurés observés (1) :
+  - [alert] pod/open5gs-smf-0 : Etablissement 
+  [APPEL OUTIL]  list_pods({'namespace': 'core5g'})
+  [TEXTE ToolMessage]  [{"name": "open5gs-amf-0", "namespace": "core5g", "status": "Running", "restarts": 0, "node": "worker-1"}, {"name": "open5gs-smf-0", "namespace": "core5g", "status": "Running", "restarts": 0, "node": "worker-1"}, {"name": "open5gs-upf-0", "namespace": "core5g", "status": "Running", "restarts": 0, "node": "worker-2"}, {"name": "open5gs-nrf-0", "namespace": "core5g", "status": "Running", "restarts":
+  [TEXTE AIMessage]  {"name": "describe_pod", "parameters": {"namespace":"core5g", "pod_name":"open5gs-smf-0"}}
+
+--- Fin ---

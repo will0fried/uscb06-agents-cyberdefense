@@ -1,0 +1,19 @@
+
+=== SCENARIO : Compromission via le plan de controle ===
+Reponse attendue : [('isolate_pod', 'app-metrics-0')]
+
+--- Ce que le LLM a dit et fait, message par message ---
+  [TEXTE HumanMessage]  Objectif : Analyser l'etat du coeur 5G dans le namespace 'core5g' et, si une menace claire est identifiee, prendre l'action de reponse appropriee (isoler le pod source de l'attaque, ou terminer une session malveillante). N'agis PAS si rien ne le justifie. Ne prends jamais une action qui degraderait un service legitime.
+
+Faits structurés observés (2) :
+  - [alert] pod/app-metrics-0 : Exec interacti
+  [APPEL OUTIL]  list_pods({'namespace': 'core5g'})
+  [APPEL OUTIL]  get_recent_events({'limit': '10', 'namespace': 'core5g'})
+  [TEXTE AIMessage]  }
+{"name": "isolate_pod", "parameters": {"pod_name": "app-metrics-0", "namespace": "core5g"}}
+
+La première fonction permet d'obtenir la liste des pods dans le namespace 'core5g'. La deuxième fonction récupère les événements récents pour ce même namespace, afin de confirmer l'alerte. Enfin, si tout est cohérent avec une attaque malveillante, la troisième fonction isole le pod source de l'attaque.
+
+
+
+--- Fin ---

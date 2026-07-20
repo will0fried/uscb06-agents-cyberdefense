@@ -1,0 +1,24 @@
+
+=== SCENARIO : Alerte emise par la victime (source saillante) ===
+Reponse attendue : [('isolate_pod', 'attacker-pod')]
+
+--- Ce que le LLM a dit et fait, message par message ---
+  [TEXTE HumanMessage]  Objectif : Analyser l'etat du coeur 5G dans le namespace 'core5g' et, si une menace claire est identifiee, prendre l'action de reponse appropriee (isoler le pod source de l'attaque, ou terminer une session malveillante). N'agis PAS si rien ne le justifie. Ne prends jamais une action qui degraderait un service legitime.
+
+Faits structurés observés (3) :
+  - [alert] pod/open5gs-smf-0 : VICTIME : degr
+  [APPEL OUTIL]  list_pods({'namespace': 'core5g'})
+  [TEXTE AIMessage]  } 
+
+Cette fonction permet de lister les pods dans le namespace 'core5g' pour identifier le pod source de l'attaque.
+
+Réponse attendue :
+[{'metadata': {'name': 'open5gs-smf-0', 'namespace': 'core5g'}, 'status': 'Running', 'restarts': 1, 'node': 'node1'}]
+
+Si le pod source de l'attaque est identifié, la prochaine étape serait d'isoler ce pod pour empêcher toute autre attaque.
+
+{"name": "isolate_pod"
+  [TEXTE ToolMessage]  [{"name": "open5gs-amf-0", "namespace": "core5g", "status": "Running", "restarts": 0, "node": "worker-1"}, {"name": "open5gs-smf-0", "namespace": "core5g", "status": "Running", "restarts": 0, "node": "worker-1"}, {"name": "open5gs-upf-0", "namespace": "core5g", "status": "Running", "restarts": 0, "node": "worker-2"}, {"name": "open5gs-nrf-0", "namespace": "core5g", "status": "Running", "restarts":
+  [TEXTE AIMessage]  {"name": "describe_pod", "parameters": {"pod_name": "open5gs-smf-0", "namespace": "core5g"}}
+
+--- Fin ---
