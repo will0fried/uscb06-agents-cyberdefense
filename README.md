@@ -9,7 +9,7 @@ L'idée que je défends dans le mémoire : la performance d'un agent tient autan
 - `01_scripts/` : le code des agents et des campagnes de mesure
 - `02_resultats_bruts/` : les résultats bruts en CSV, le modèle RL entraîné, un exemple d'échange avec le LLM
 - `03_captures/` : les figures (boxplots, comparaison des deux terrains)
-- `04_poc_evaluation/` : le barème, les CSV et les transcripts de l'évaluation du PoC (chapitre 4.5)
+- `04_poc_evaluation/` : le barème, les CSV et les transcripts de l'évaluation du PoC sur deux modèles locaux (llama3.2:3b et llama3.1:8b) - chapitre 4.5
 - `05_poc/` : le code de la preuve de concept (agent AICA en LangGraph et harnais d'évaluation)
 - `journal.md` : mon journal de bord, une ligne par séance de travail
 - `versions.md` et `resultats_*.md` : le relevé de l'environnement et les synthèses chiffrées
