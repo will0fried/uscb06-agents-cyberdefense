@@ -6,7 +6,7 @@ Pourquoi ? Parce que :
 - les modèles 3B sont parfois aléatoires sur le tool calling, ce qui rend
   les tests d'intégration flakey ;
 - pour le mémoire, on veut pouvoir reproduire un run exactement (même
-  séquence d'actions, même conclusion) pour les chiffres de la section 3.5.
+  séquence d'actions, même conclusion) pour les chiffres de la section 4.5.
 
 Le stub implémente le sous-ensemble de l'interface ChatModel utilisé par
 nos nœuds : `bind_tools(tools)` retourne un objet avec `.invoke(messages)`

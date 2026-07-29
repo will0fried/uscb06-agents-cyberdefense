@@ -165,7 +165,8 @@ def should_continue(state: AgentState) -> str:
     - Si le LLM a émis des tool calls -> on exécute (nœud action)
     - Si le LLM a déclaré MISSION_TERMINEE -> on s'arrête
     - Si on a dépassé le budget de pas -> on s'arrête
-    - Sinon -> on retourne au sensing pour ré-observer
+    - Sinon (pas de tool call, pas de fin declaree) -> on s'arrete aussi
+      (le graphe ne reboucle pas vers le sensing dans cette version)
     """
     if state.get("finished"):
         return "end"

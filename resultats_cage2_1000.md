@@ -17,7 +17,7 @@ Relevé du 12 juillet 2026. Source des chiffres pour le chapitre 4.4.
 | RL (PPO) | 1000 | -4,70 | 3,40 | [-4,91 ; -4,49] |
 | Règle réactive (façon AICA) | 1000 | -14,33 | 0,80 | [-14,38 ; -14,28] |
 | Action fixe (#135 Restore Enterprise2) | 1000 | -57,30 | 1,06 | [-57,36 ; -57,23] |
-| Hasard | 1000 | -154,71 | 78,93 | [-159,60 ; -149,82] |
+| Hasard | 1000 | -154,71 | 78,97 | [-159,60 ; -149,82] |
 
 Les intervalles de confiance ne se recouvrent pas : le classement
 RL > règle > action fixe > hasard tient sans ambiguïté.
@@ -28,7 +28,7 @@ RL > règle > action fixe > hasard tient sans ambiguïté.
 |---|---|---|---|
 | RL vs règle | 979/1000 | +9,63 | [+9,41 ; +9,85] |
 | Règle vs hasard | 981/1000 | +140,38 | [+135,48 ; +145,27] |
-| RL vs hasard | 993/1000 | +150,01 | [+145,11 ; +154,90] |
+| RL vs hasard | 993/1000 | +150,01 | [+145,11 ; +154,91] |
 | Action fixe vs hasard | 796/1000 | +97,41 | [+92,52 ; +102,31] |
 
 ## Lecture pour le mémoire

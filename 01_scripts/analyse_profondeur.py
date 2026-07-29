@@ -25,8 +25,8 @@ for name, data in [("CAGE 2", C), ("DroneSwarm", D)]:
         v = list(d.values())
         print(f"{s:<12}{st.mean(v):>9.2f}{st.median(v):>9.2f}{pct(v,5):>12.2f}{min(v):>9.1f}{max(v):>8.1f}")
 llm_c = list(CL.values()); llm_d = list(DL.values())
-print(f"{'LLM C2(n=100)':<12}{st.mean(llm_c):>8.2f}{st.median(llm_c):>9.2f}{pct(llm_c,5):>12.2f}{min(llm_c):>9.1f}{max(llm_c):>8.1f}")
-print(f"{'LLM Dr(n=100)':<12}{st.mean(llm_d):>8.2f}{st.median(llm_d):>9.2f}{pct(llm_d,5):>12.2f}{min(llm_d):>9.1f}{max(llm_d):>8.1f}")
+print(f"{'LLM C2(n=1000)':<12}{st.mean(llm_c):>8.2f}{st.median(llm_c):>9.2f}{pct(llm_c,5):>12.2f}{min(llm_c):>9.1f}{max(llm_c):>8.1f}")
+print(f"{'LLM Dr(n=1000)':<12}{st.mean(llm_d):>8.2f}{st.median(llm_d):>9.2f}{pct(llm_d,5):>12.2f}{min(llm_d):>9.1f}{max(llm_d):>8.1f}")
 
 def pearson(a, b):
     ks = sorted(set(a) & set(b))

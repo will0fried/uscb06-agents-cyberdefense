@@ -10,13 +10,13 @@ modèle RL propres à chaque environnement). Reproductibilité vérifiée (2 run
 
 | Stratégie | Moyenne | σ | IC 95 % |
 |---|---|---|---|
-| RL (PPO) | -4,70 | 3,4 | [-4,91 ; -4,49] |
-| Règle réactive | -14,33 | 0,8 | [-14,38 ; -14,28] |
-| Action fixe (#135 Restore Enterprise2) | -57,30 | 1,1 | [-57,36 ; -57,23] |
-| Hasard | -154,71 | 78,9 | [-159,60 ; -149,82] |
+| RL (PPO) | -4,70 | 3,40 | [-4,91 ; -4,49] |
+| Règle réactive | -14,33 | 0,80 | [-14,38 ; -14,28] |
+| Action fixe (#135 Restore Enterprise2) | -57,30 | 1,06 | [-57,36 ; -57,23] |
+| Hasard | -154,71 | 78,97 | [-159,60 ; -149,82] |
 | LLM (llama3.2:3b, n=1000) | -188,42 | 54,38 | [-191,79 ; -185,05] |
 
-(n=1000 remplace la valeur provisoire n=100 de -190,03 [-200,21 ; -179,85], relevée le 13 juil ; CSV cage2_llm_final.csv, 0 invalide.)
+(n=1000 remplace la valeur provisoire n=100 de -190,03 [-200,27 ; -179,80], relevée le 13 juil ; CSV cage2_llm_final.csv, 0 invalide.)
 
 Le LLM est significativement pire que le hasard (IC disjoints).
 Intervalles tous disjoints : le classement RL > règle > action fixe > hasard
@@ -26,10 +26,10 @@ tient sans ambiguïté.
 
 | Stratégie | Moyenne | σ | IC 95 % |
 |---|---|---|---|
-| RL (PPO) | -194,35 | 116,1 | [-201,54 ; -187,15] |
-| Action fixe (#12) | -194,38 | 116,4 | [-201,60 ; -187,17] |
-| Règle réactive | -197,56 | 112,2 | [-204,52 ; -190,60] |
-| Hasard | -205,83 | 107,6 | [-212,50 ; -199,16] |
+| RL (PPO) | -194,35 | 116,13 | [-201,54 ; -187,15] |
+| Action fixe (#12) | -194,38 | 116,49 | [-201,60 ; -187,17] |
+| Règle réactive | -197,56 | 112,28 | [-204,52 ; -190,60] |
+| Hasard | -205,83 | 107,68 | [-212,50 ; -199,16] |
 | LLM (llama3.2:3b, n=1000) | -211,50 | 111,28 | [-218,40 ; -204,61] |
 
 Les intervalles de confiance se chevauchent largement. Mais l'analyse appariée
@@ -112,11 +112,14 @@ B_line, on le confronte à un adversaire inconnu. Protocole identique : 1000 par
 
 | Stratégie | B_line | Meander | Écart | σ B_line | σ Meander |
 |---|---|---|---|---|---|
-| RL (PPO) | -4,70 | **-8,79** | **-4,09** | 3,40 | 2,02 |
+| RL (PPO) | -4,70 | **-8,79** | **-4,08** | 3,40 | 2,02 |
 | Règle réactive | -14,33 | -12,26 | +2,07 | 0,80 | **0,56** |
-| Action fixe #135 | -57,30 | -55,99 | +1,31 | 1,06 | 4,47 |
-| Hasard | -154,71 | -34,60 | +120,11 | 78,93 | 16,28 |
-| LLM (llama3.2:3b) | -188,42 | -36,11 | **+152,31** | 54,36 | 16,60 |
+| Action fixe #135 | -57,30 | -55,99 | +1,30 | 1,06 | 4,47 |
+| Hasard | -154,71 | -34,60 | +120,11 | 78,97 | 16,28 |
+| LLM (llama3.2:3b) | -188,42 | -36,11 | **+152,32** | 54,38 | 16,61 |
+
+Écarts et écarts-types calculés sur les valeurs non arrondies (écart-type d'échantillon, n-1),
+comme dans le mémoire ; des différences de 0,01 avec les moyennes affichées peuvent apparaître.
 
 La ligne LLM a été mesurée séparément (`01_scripts/cage2_llm_meander.py`, prompt identique au
 byte près à `cage2_llm_1000.py`, 1000 parties, 0 réponse invalide, 1058 minutes).
@@ -156,7 +159,7 @@ Lecture, trois points.
    hasard, 92,6 % des parties). L'ordre devient RL > règle > hasard > action fixe.
    Une stratégie taillée pour un adversaire précis devient pire que le dé face à un autre.
 
-Les variances racontent la même histoire : celle du hasard s'écroule (78,93 → 16,28, B_line
+Les variances racontent la même histoire : celle du hasard s'écroule (78,97 → 16,28, B_line
 détruit ou pas, Meander fait des dégâts moyens réguliers), celle de l'action fixe augmente
 (1,06 → 4,47, son sort dépend maintenant d'où Meander erre), et la règle reste la plus
 stable des quatre sur les deux attaquants (σ = 0,56). Matière directe pour le §4.5 :
@@ -172,8 +175,8 @@ refaite avec le seul filtre `MENU` retiré : le LLM voit les 145 actions. Script
 
 | LLM sur CAGE 2 / B_line | Moyenne | σ | Médiane | Actions utilisées |
 |---|---|---|---|---|
-| 41 actions (publié) | -188,42 | 54,36 | -220,30 | - |
-| 145 actions | **-176,06** | **83,96** | -222,80 | **16 sur 145** |
+| 41 actions (publié) | -188,42 | 54,38 | -220,30 | - |
+| 145 actions | **-176,06** | **84,00** | -222,80 | **16 sur 145** |
 
 Trois résultats, dont deux contre-intuitifs (prédictions écrites avant lancement : Will -200 /
 0 % invalides ; Claude -200 à -230 / 5-20 % invalides - les deux fausses sur la moyenne).

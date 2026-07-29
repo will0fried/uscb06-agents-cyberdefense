@@ -1,7 +1,8 @@
 """
 AICA-en-LangGraph - Agent autonome de cyberdéfense pour cluster Kubernetes + 5G.
 
-Architecture inspirée du modèle AICA (Argonne National Laboratory, IST-152 OTAN) :
+Architecture inspirée du modèle AICA (groupe OTAN IST-152 ; Kott et al.,
+US Army Research Laboratory) :
 - sensing : collecte d'observations brutes
 - perception : filtrage et structuration des observations
 - world_model : maintien d'une représentation de l'environnement
