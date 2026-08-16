@@ -9,6 +9,12 @@ execution de l'action. Les deux autres - collaboration entre agents et apprentis
 pas implementees, et le chapitre 4.5 le dit. Cible : un coeur de reseau 5G Open5GS deploye sur
 Kubernetes. Donnees simulees.
 
+`config.py` prevoit plusieurs fournisseurs de modele (Ollama, OpenAI, Anthropic, Mistral,
+plus un stub deterministe) afin que le graphe ne soit couple a aucun moteur particulier.
+Toutes les mesures publiees dans le memoire utilisent la branche Ollama, en local : aucune
+observation n'a ete transmise a une API distante. Les autres branches ne sont jamais
+executees dans les campagnes.
+
 ## Organisation
 
 - `src/aica_agent/` : le code de l'agent

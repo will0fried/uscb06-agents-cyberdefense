@@ -62,4 +62,12 @@ C'est un travail universitaire. Toutes les données viennent de simulations CybO
 
 Des outils d'intelligence artificielle générative ont été utilisés dans ce travail comme appui technique : aide au débogage et à la structuration des scripts, relecture, vérification croisée des calculs. La conception du protocole expérimental, l'exécution de toutes les campagnes sur ma machine personnelle, le journal de bord et la validation de chaque résultat sont de mon fait. Chaque chiffre du mémoire est traçable jusqu'aux fichiers bruts de ce dépôt.
 
+## Licence
+
+Le code de ce dépôt est publié sous licence MIT (voir `LICENSE`). Les données brutes (CSV, transcripts, figures) sont réutilisables aux mêmes conditions, sous réserve de citer ce dépôt et le mémoire dont il est issu.
+
+## Version de référence
+
+L'état du dépôt correspondant au mémoire déposé est marqué par le tag `memoire-2026`. Les commits ultérieurs ne font pas partie du travail évalué.
+
 Wilfried Koussouri - Master 2, CNAM (2025-2026).
