@@ -1,6 +1,6 @@
 # Agents autonomes de cyberdéfense - code et résultats
 
-Ce dépôt rassemble le code et les données de mon mémoire de Master 2 (CNAM, USCB06). J'y compare trois familles d'agents défensifs - des règles réactives, de l'apprentissage par renforcement (PPO) et un LLM - sur deux environnements de simulation CybORG : CAGE 2, un réseau d'entreprise, et DroneSwarm, un essaim de drones.
+Ce dépôt rassemble le code et les données de mon mémoire de Master 2. J'y compare trois familles d'agents défensifs - des règles réactives, de l'apprentissage par renforcement (PPO) et un LLM - sur deux environnements de simulation CybORG : CAGE 2, un réseau d'entreprise, et DroneSwarm, un essaim de drones.
 
 L'idée que je défends dans le mémoire : la performance d'un agent tient autant au terrain qu'à l'algorithme. Le même modèle qui domine tout sur CAGE 2 fait à peine mieux que le hasard sur DroneSwarm. Tout le code et tous les CSV qui montrent ça sont ici.
 
@@ -70,4 +70,4 @@ Le code de ce dépôt est publié sous licence MIT (voir `LICENSE`). Les donnée
 
 L'état du dépôt correspondant au mémoire déposé est marqué par le tag `memoire-2026`. Les commits ultérieurs ne font pas partie du travail évalué.
 
-Wilfried Koussouri - Master 2, CNAM (2025-2026).
+W.
