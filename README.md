@@ -4,6 +4,10 @@ Ce dépôt rassemble le code et les données de mon mémoire de Master 2. J'y co
 
 L'idée que je défends dans le mémoire : la performance d'un agent tient autant au terrain qu'à l'algorithme. Le même modèle qui domine tout sur CAGE 2 fait à peine mieux que le hasard sur DroneSwarm. Tout le code et tous les CSV qui montrent ça sont ici.
 
+![Comparaison des stratégies sur CAGE 2 et DroneSwarm](03_captures/comparaison_deux_terrains.png)
+
+*Même palette de stratégies, deux terrains : ce qui domine sur CAGE 2 s'effondre sur DroneSwarm.*
+
 ## Organisation
 
 - `01_scripts/` : le code des agents et des campagnes de mesure
